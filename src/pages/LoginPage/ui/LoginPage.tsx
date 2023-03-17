@@ -1,19 +1,20 @@
-import Button from '@mui/material/Button'
+import { Container } from '@mui/material'
+import { LoginForm } from 'features/UserAuth'
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 
 const LoginPage = () => {
-    const navigate = useNavigate()
-
     return (
-        <div>
-            <Button onClick={() => navigate('/')} variant={'contained'} color={'secondary'}>
-                home
-            </Button>
-            <Button onClick={() => navigate('/loginnn')} variant={'contained'} color={'warning'}>
-                404
-            </Button>
-        </div>
+        <Container
+            sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '100vh',
+                width: '100%',
+            }}
+        >
+            <LoginForm />
+        </Container>
     )
 }
 

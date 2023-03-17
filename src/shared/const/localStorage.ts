@@ -1,1 +1,1 @@
-export const X_AUTH_TOKEN = 'token'
+export const X_AUTH_TOKEN = 'auth_token'
