@@ -1,6 +1,5 @@
 import { Container } from '@mui/material'
 import { LoginForm } from 'features/UserAuth'
-import React from 'react'
 
 const LoginPage = () => {
     return (

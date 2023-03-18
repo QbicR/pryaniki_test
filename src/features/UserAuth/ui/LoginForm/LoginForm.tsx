@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux/es/exports'
 import { Box, Button, TextField } from '@mui/material'
 import { ThunkDispatch } from '@reduxjs/toolkit'
@@ -11,17 +11,23 @@ export const LoginForm = () => {
     const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
     const { username, password, isLoading, error } = useSelector(getLoginState)
 
-    const onChangeUsername = (value: string) => {
-        dispatch(loginActions.setUsername(value))
-    }
+    const onChangeUsername = useCallback(
+        (value: string) => {
+            dispatch(loginActions.setUsername(value))
+        },
+        [dispatch],
+    )
 
-    const onChangePassword = (value: string) => {
-        dispatch(loginActions.setPassword(value))
-    }
+    const onChangePassword = useCallback(
+        (value: string) => {
+            dispatch(loginActions.setPassword(value))
+        },
+        [dispatch],
+    )
 
-    const onClickLogin = () => {
+    const onClickLogin = useCallback(() => {
         dispatch(loginAsyncThunk({ username, password }))
-    }
+    }, [dispatch, username, password])
 
     return (
         <Box
@@ -32,17 +38,15 @@ export const LoginForm = () => {
                 borderRadius: '8px',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
+                justifyContent: 'space-evenly',
                 flexDirection: 'column',
-                position: 'relative',
             }}
         >
-            {error && <h3>Вы ввели неверный логин или пароль</h3>}
+            <h2>Вход</h2>
+            {error && <h3>{error}</h3>}
             <TextField
-                sx={{ width: '80%', marginBottom: '30px' }}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    onChangeUsername(e.target.value)
-                }
+                sx={{ width: '80%' }}
+                onChange={(e) => onChangeUsername(e.target.value)}
                 value={username}
                 type="number"
                 variant="filled"
@@ -51,20 +55,16 @@ export const LoginForm = () => {
             />
             <TextField
                 sx={{ width: '80%' }}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    onChangePassword(e.target.value)
-                }
+                onChange={(e) => onChangePassword(e.target.value)}
                 value={password}
                 type="password"
                 variant="filled"
                 id="filled-size-small"
-                label="Введите пароль"
-                helperText="Введите 'password'"
+                label="Введите 'password'"
             />
             <Button
                 disabled={isLoading}
                 onClick={onClickLogin}
-                sx={{ position: 'absolute', bottom: 20 }}
                 size="large"
                 variant="outlined"
                 color="primary"

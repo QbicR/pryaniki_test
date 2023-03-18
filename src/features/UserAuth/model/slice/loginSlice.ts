@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
 import { LoginType } from '../types/loginType'
 import { loginAsyncThunk } from '../services/loginAsyncThunk'
 
 const initialState: LoginType = {
-    isLoading: false,
-    error: null,
     username: '',
     password: '',
+    isLoading: false,
+    error: '',
 }
 
 export const loginSlice = createSlice({
@@ -23,15 +24,15 @@ export const loginSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(loginAsyncThunk.pending, (state) => {
-                state.error = undefined
+                state.error = ''
                 state.isLoading = true
             })
-            .addCase(loginAsyncThunk.fulfilled, (state, action) => {
+            .addCase(loginAsyncThunk.fulfilled, (state) => {
                 state.isLoading = false
             })
             .addCase(loginAsyncThunk.rejected, (state, action) => {
+                state.error = action.payload as string
                 state.isLoading = false
-                state.error = 'error'
             })
     },
 })
