@@ -9,40 +9,46 @@ import {
     TableHead,
     TablePagination,
     TableRow,
+    IconButton,
+    CircularProgress,
+    Box,
     Button,
 } from '@mui/material'
+import DeleteIcon from '@mui/icons-material/Delete'
 
 import { getDataState } from '../../model/selectors/getDataState'
 import { deleteTableItem, getTableData } from '../../model/slice/tableSlice'
-import TableForm from '../TableForm/TableForm'
-import ModalUI from 'shared/ui/Modal/ModalUI'
+import AddItemForm from '../AddItemForm/AddItemForm'
+import ChangeItemForm from '../ChangeItemForm/ChangeItemForm'
 import { columns } from 'shared/const/tableColumns'
+import { userActions } from 'entities/User'
+
+const tableContainerStyle = { height: 600, marginTop: '50px' }
+const tableStyle = { position: 'relative' }
+const tableCellStyle = {
+    width: '10%',
+    textAlign: 'center',
+    padding: '10px',
+}
+const typographyStyle = {
+    position: 'absolute',
+    top: '200%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+}
 
 export const TableData = () => {
     const [page, setPage] = useState(0)
     const [rowsPerPage, setRowsPerPage] = useState(10)
-    const [isModalOpen, setIsModalOpen] = useState(false)
-    const [tableItem, setTableItem] = useState({})
     const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
     const { data, isLoading, error } = useSelector(getDataState)
-
-    console.log(data, isLoading, error)
-
-    const closeModal = () => {
-        setIsModalOpen(false)
-    }
-
-    const openModal = (item: any) => {
-        setIsModalOpen(true)
-        setTableItem(item)
-    }
 
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage)
     }
 
     const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setRowsPerPage(+event.target.value)
+        setRowsPerPage(Number(event.target.value))
         setPage(0)
     }
 
@@ -60,17 +66,22 @@ export const TableData = () => {
 
     return (
         <div>
-            <TableContainer sx={{ height: 540 }}>
-                <Table stickyHeader aria-label="sticky table">
+            <AddItemForm />
+            <TableContainer sx={tableContainerStyle}>
+                <Table stickyHeader aria-label="sticky table" sx={tableStyle}>
                     <TableHead>
                         <TableRow>
                             {columns.map((column) => (
-                                <TableCell key={column.id}>{column.label}</TableCell>
+                                <TableCell sx={tableCellStyle} key={column.id}>
+                                    {column.label}
+                                </TableCell>
                             ))}
                         </TableRow>
                     </TableHead>
                     {isLoading ? (
-                        <h1>loaging...</h1>
+                        <Box sx={typographyStyle}>
+                            <CircularProgress />
+                        </Box>
                     ) : (
                         <TableBody>
                             {data
@@ -81,25 +92,24 @@ export const TableData = () => {
                                             // @ts-ignore
                                             const value = item[column.id]
                                             return (
-                                                <TableCell key={column.id}>
+                                                <TableCell key={column.id} sx={tableCellStyle}>
                                                     {value}
                                                     {!value && (
                                                         <>
                                                             {column.id === 'changeData' && (
-                                                                <Button
-                                                                    onClick={() => openModal(item)}
-                                                                >
-                                                                    И
-                                                                </Button>
+                                                                <ChangeItemForm item={item} />
                                                             )}
                                                             {column.id === 'deleteData' && (
-                                                                <Button
+                                                                <IconButton
                                                                     onClick={() =>
                                                                         deleteItem(item.id)
                                                                     }
+                                                                    aria-label="delete"
                                                                 >
-                                                                    У
-                                                                </Button>
+                                                                    <DeleteIcon
+                                                                        sx={{ color: '#E34234' }}
+                                                                    />
+                                                                </IconButton>
                                                             )}
                                                         </>
                                                     )}
@@ -121,9 +131,6 @@ export const TableData = () => {
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
             />
-            <ModalUI isOpen={isModalOpen} onClose={closeModal}>
-                <TableForm tableItem={tableItem} onClose={closeModal} />
-            </ModalUI>
         </div>
     )
 }

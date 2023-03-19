@@ -1,9 +1,19 @@
-import React from 'react'
+import { useEffect, Suspense } from 'react'
+import { useSelector } from 'react-redux'
 import './styles/index.css'
-import { Suspense } from 'react'
+
 import { AppRouter } from './providers/router'
+import { getUserAuthData } from 'entities/User'
 
 const App = () => {
+    const data = useSelector(getUserAuthData)
+
+    useEffect(() => {
+        if (data) {
+            window.location.reload()
+        }
+    }, [data])
+
     return (
         <div>
             <Suspense fallback="">

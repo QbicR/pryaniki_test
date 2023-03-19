@@ -9,12 +9,16 @@ export const columns: readonly ColumnsProps[] = [
         label: 'Название документа',
     },
     {
+        id: 'documentStatus',
+        label: 'Статус документа',
+    },
+    {
         id: 'documentType',
         label: 'Тип документа',
     },
     {
-        id: 'documentStatus',
-        label: 'Статус документа',
+        id: 'employeeNumber',
+        label: 'Номер сотрудника',
     },
     {
         id: 'companySignatureName',
@@ -23,10 +27,6 @@ export const columns: readonly ColumnsProps[] = [
     {
         id: 'companySigDate',
         label: 'Дата подписи компании',
-    },
-    {
-        id: 'employeeNumber',
-        label: 'Номер сотрудника',
     },
     {
         id: 'employeeSignatureName',

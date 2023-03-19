@@ -1,20 +1,18 @@
-import React from 'react'
 import { Container } from '@mui/material'
+import { MainWidget } from 'widgets/MainWidget'
 
-import { TableData } from 'features/TableData/ui/Table/TableData'
+const containerStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100vh',
+    width: '100%',
+}
 
 const MainPage = () => {
     return (
-        <Container
-            sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '100vh',
-                width: '100%',
-            }}
-        >
-            <TableData />
+        <Container maxWidth="xl" sx={containerStyle}>
+            <MainWidget />
         </Container>
     )
 }

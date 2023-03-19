@@ -16,6 +16,12 @@ export type ResponseType = {
     error_message: string
 }
 
+export type ResponseChangeType = {
+    data: ResponseDataType
+    error_code: number
+    error_message: string
+}
+
 export type TableDataType = {
     data: ResponseDataType[]
     isLoading: boolean
