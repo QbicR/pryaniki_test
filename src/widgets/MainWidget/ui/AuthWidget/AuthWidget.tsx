@@ -1,6 +1,7 @@
-import { Card, Typography } from '@mui/material'
+import { Button, Card, Typography } from '@mui/material'
 
-import { UserAuth } from 'features/UserAuth'
+import { useNavigate } from 'react-router-dom'
+import { RoutePath } from 'shared/config/routeConfig/routeConfig'
 
 const cardStyle = {
     display: 'flex',
@@ -15,12 +16,21 @@ const cardStyle = {
 }
 
 export const AuthWidget = () => {
+    const navigate = useNavigate()
+
     return (
         <Card sx={cardStyle}>
             <Typography sx={{ fontSize: 32 }} color="text.secondary" gutterBottom>
                 Авторизуйтесь, чтобы воспользоваться таблицей
             </Typography>
-            <UserAuth />
+            <Button
+                size="large"
+                variant="contained"
+                color="info"
+                onClick={() => navigate(RoutePath.auth)}
+            >
+                Войти
+            </Button>
         </Card>
     )
 }

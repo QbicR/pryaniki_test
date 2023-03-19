@@ -41,6 +41,7 @@ export const LoginForm = () => {
         dispatch(logIn({ username, password }))
         dispatch(loginActions.setUsername(''))
         dispatch(loginActions.setPassword(''))
+        dispatch(loginActions.setError(''))
     }, [dispatch, username, password])
 
     return (
@@ -52,7 +53,7 @@ export const LoginForm = () => {
                 sx={inputStyle}
                 onChange={(e) => onChangeUsername(e.target.value)}
                 value={username}
-                label={Number(username) < 0 ? 'Номер не может быть меньше 0' : 'Введите номер'}
+                label={Number(username) < 0 ? 'Номер не может быть меньше 1' : 'Введите номер'}
                 error={Number(username) < 0 ? true : false}
                 type="number"
                 id="filled-size-small"
@@ -68,7 +69,7 @@ export const LoginForm = () => {
                 variant="filled"
             />
             <Button
-                disabled={isLoading || !password || !username || Number(username) < 0}
+                disabled={isLoading || !password || !username || Number(username) < 1}
                 onClick={onClickLogin}
                 size="large"
                 variant="contained"
