@@ -17,25 +17,31 @@ const TableForm: React.FC<Props> = (props) => {
     const [docName, setDocName] = useState(item?.documentName || '')
     const [docType, setDocType] = useState(item?.documentType || '')
     const [docStatus, setDocStatsu] = useState(item?.documentStatus || '')
-    const [comSigName, setComSigName] = useState(item?.companySignatureName || '')
     const [empNumber, setEmpNumber] = useState(item?.employeeNumber || '')
+    const [comSigName, setComSigName] = useState(item?.companySignatureName || '')
+    const [comSigDate, setComSigDate] = useState(item?.companySigDate || '')
     const [empSigName, setEmpSigName] = useState(item?.employeeSignatureName || '')
-    const [comSigDate, setComSigDate] = useState(
-        item?.companySigDate || new Date(Date.now()).toISOString(),
-    )
-    const [empSigDate, setEmpSigDate] = useState(
-        item?.employeeSigDate || new Date(Date.now()).toISOString(),
-    )
+    const [empSigDate, setEmpSigDate] = useState(item?.employeeSigDate || '')
 
     const newItem = {
         documentName: docName,
         documentType: docType,
         documentStatus: docStatus,
-        companySignatureName: comSigName,
         employeeNumber: empNumber,
-        employeeSignatureName: empSigName,
+        companySignatureName: comSigName,
         companySigDate: comSigDate,
+        employeeSignatureName: empSigName,
         employeeSigDate: empSigDate,
+    }
+
+    const addCompanySigDate = (e: string) => {
+        setComSigName(e)
+        setComSigDate(new Date(Date.now()).toISOString())
+    }
+
+    const addEmployeeSigDate = (e: string) => {
+        setEmpSigName(e)
+        setEmpSigDate(new Date(Date.now()).toISOString())
     }
 
     return (
@@ -81,7 +87,7 @@ const TableForm: React.FC<Props> = (props) => {
             <TextField
                 sx={inputStyle}
                 value={comSigName}
-                onChange={(e) => setComSigName(e.target.value)}
+                onChange={(e) => addCompanySigDate(e.target.value)}
                 type="text"
                 variant="standard"
                 id="filled-size-small"
@@ -90,7 +96,7 @@ const TableForm: React.FC<Props> = (props) => {
             <TextField
                 sx={inputStyle}
                 value={empSigName}
-                onChange={(e) => setEmpSigName(e.target.value)}
+                onChange={(e) => addEmployeeSigDate(e.target.value)}
                 type="text"
                 variant="standard"
                 id="filled-size-small"
