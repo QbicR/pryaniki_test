@@ -1,9 +1,8 @@
-import React from 'react'
 import { Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { routeConfig } from 'shared/config/routeConfig/routeConfig'
 
-const AppRouter = () => (
+export const AppRouter = () => (
     <Routes>
         {Object.values(routeConfig).map(({ element, path }) => (
             <Route
@@ -18,5 +17,3 @@ const AppRouter = () => (
         ))}
     </Routes>
 )
-
-export default AppRouter

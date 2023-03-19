@@ -6,14 +6,14 @@ import { IconButton } from '@mui/material'
 
 import { changeTableItem } from '../../model/slice/tableSlice'
 import { ResponseDataType } from '../../model/types/dataType'
-import TableForm from '../TableForm/TableForm'
-import ModalUI from 'shared/ui/Modal/ModalUI'
+import { TableForm } from '../TableForm/TableForm'
+import { ModalUI } from 'shared/ui/Modal/ModalUI'
 
 interface Props {
     item: ResponseDataType
 }
 
-const ChangeItemForm: React.FC<Props> = (props) => {
+export const ChangeItemForm: React.FC<Props> = (props) => {
     const { item } = props
 
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -39,5 +39,3 @@ const ChangeItemForm: React.FC<Props> = (props) => {
         </div>
     )
 }
-
-export default ChangeItemForm

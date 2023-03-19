@@ -4,11 +4,11 @@ import { ThunkDispatch } from '@reduxjs/toolkit'
 import { Button } from '@mui/material'
 
 import { addTableItem } from '../../model/slice/tableSlice'
-import TableForm from '../TableForm/TableForm'
+import { TableForm } from '../TableForm/TableForm'
 import { ResponseDataType } from '../../model/types/dataType'
-import ModalUI from 'shared/ui/Modal/ModalUI'
+import { ModalUI } from 'shared/ui/Modal/ModalUI'
 
-const AddItemForm = () => {
+export const AddItemForm = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const dispath = useDispatch<ThunkDispatch<any, any, any>>()
 
@@ -37,5 +37,3 @@ const AddItemForm = () => {
         </div>
     )
 }
-
-export default AddItemForm

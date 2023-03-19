@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Button } from '@mui/material'
 
 import { LoginForm } from '../LoginForm/LoginForm'
-import ModalUI from 'shared/ui/Modal/ModalUI'
+import { ModalUI } from 'shared/ui/Modal/ModalUI'
 
 export const UserAuth = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)

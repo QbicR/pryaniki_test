@@ -14,7 +14,7 @@ const cardStyle = {
     p: 4,
 }
 
-const AuthWidget = () => {
+export const AuthWidget = () => {
     return (
         <Card sx={cardStyle}>
             <Typography sx={{ fontSize: 32 }} color="text.secondary" gutterBottom>
@@ -24,5 +24,3 @@ const AuthWidget = () => {
         </Card>
     )
 }
-
-export default AuthWidget

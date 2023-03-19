@@ -12,16 +12,14 @@ import {
     IconButton,
     CircularProgress,
     Box,
-    Button,
 } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 
 import { getDataState } from '../../model/selectors/getDataState'
 import { deleteTableItem, getTableData } from '../../model/slice/tableSlice'
-import AddItemForm from '../AddItemForm/AddItemForm'
-import ChangeItemForm from '../ChangeItemForm/ChangeItemForm'
+import { AddItemForm } from '../AddItemForm/AddItemForm'
+import { ChangeItemForm } from '../ChangeItemForm/ChangeItemForm'
 import { columns } from 'shared/const/tableColumns'
-import { userActions } from 'entities/User'
 
 const tableContainerStyle = { height: 600, marginTop: '50px' }
 const tableStyle = { position: 'relative' }

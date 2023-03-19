@@ -19,7 +19,7 @@ const boxStyle = {
     padding: '30px',
 }
 
-const ModalUI: React.FC<Props> = (props) => {
+export const ModalUI: React.FC<Props> = (props) => {
     const { isOpen, onClose, children } = props
 
     return (
@@ -36,5 +36,3 @@ const ModalUI: React.FC<Props> = (props) => {
         </Portal>
     )
 }
-
-export default ModalUI

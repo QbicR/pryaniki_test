@@ -4,7 +4,7 @@ import { ResponseChangeType, ResponseDataType, ResponseType } from '../types/dat
 import { HOST } from 'shared/const/hostAPI'
 import { X_AUTH_TOKEN } from 'shared/const/localStorage'
 
-const tableService = {
+export const tableService = {
     getTableData: async () => {
         try {
             const { data } = await axios.get<ResponseType>(
@@ -64,5 +64,3 @@ const tableService = {
         }
     },
 }
-
-export default tableService

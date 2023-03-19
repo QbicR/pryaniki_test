@@ -1,9 +1,10 @@
-import { TableData } from 'features/TableData'
-import { Button } from '@mui/material'
-import { userActions } from 'entities/User'
 import { useDispatch } from 'react-redux'
-import AuthWidget from '../AuthWidget/AuthWidget'
+import { Button } from '@mui/material'
+
+import { userActions } from 'entities/User'
+import { TableData } from 'features/TableData'
 import { X_AUTH_TOKEN } from 'shared/const/localStorage'
+import { AuthWidget } from '../AuthWidget/AuthWidget'
 
 export const MainWidget = () => {
     const disptach = useDispatch()

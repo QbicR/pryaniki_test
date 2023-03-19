@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { ResponseDataType } from './../types/dataType'
 import { TableDataType } from '../types/dataType'
-import tableService from '../services/table.service'
+import { tableService } from '../services/table.service'
 
 const initialState: TableDataType = {
     data: [],

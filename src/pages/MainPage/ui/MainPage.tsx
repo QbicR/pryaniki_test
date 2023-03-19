@@ -9,7 +9,7 @@ const containerStyle = {
     width: '100%',
 }
 
-const MainPage = () => {
+export const MainPage = () => {
     return (
         <Container maxWidth="xl" sx={containerStyle}>
             <MainWidget />

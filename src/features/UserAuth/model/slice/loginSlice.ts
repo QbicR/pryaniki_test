@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { LoginType } from '../types/loginType'
-import authService from '../services/auth.service'
+import { authService } from '../services/auth.service'
 import { X_AUTH_TOKEN } from 'shared/const/localStorage'
 import { userActions } from 'entities/User'
 
