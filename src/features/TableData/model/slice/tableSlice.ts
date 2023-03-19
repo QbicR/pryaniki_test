@@ -17,6 +17,7 @@ export const tableSlice = createSlice({
         setData: (state, action: PayloadAction<ResponseDataType[]>) => {
             state.data = action.payload
             state.isLoading = false
+            state.error = ''
         },
         setError: (state, action: PayloadAction<string>) => {
             state.error = action.payload
@@ -39,6 +40,7 @@ export const tableSlice = createSlice({
         },
         deleteItem: (state, action: PayloadAction<string>) => {
             state.data = state.data.filter((item) => item.id !== action.payload)
+            state.error = ''
         },
     },
 })

@@ -34,7 +34,7 @@ export const { reducer: loginReducer } = loginSlice
 export const logIn =
     (authData: Record<string, string>) =>
     async (
-        dispatch: (arg0: { payload: any; type: 'user/setAuthData' | 'login/setError' }) => void,
+        dispatch: (arg0: { payload: string; type: 'user/setAuthData' | 'login/setError' }) => void,
     ) => {
         try {
             const response = await authService.login(authData)

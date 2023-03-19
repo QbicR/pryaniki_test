@@ -50,10 +50,11 @@ export const LoginForm = () => {
                 sx={inputStyle}
                 onChange={(e) => onChangeUsername(e.target.value)}
                 value={username}
+                label={Number(username) < 0 ? 'Номер не может быть меньше 0' : 'Введите номер'}
+                error={Number(username) < 0 ? true : false}
                 type="number"
-                variant="filled"
                 id="filled-size-small"
-                label="Введите номер"
+                variant="filled"
             />
             <TextField
                 sx={inputStyle}
@@ -65,7 +66,7 @@ export const LoginForm = () => {
                 variant="filled"
             />
             <Button
-                disabled={isLoading || !password || !username}
+                disabled={isLoading || !password || !username || Number(username) < 0}
                 onClick={onClickLogin}
                 size="large"
                 variant="contained"
