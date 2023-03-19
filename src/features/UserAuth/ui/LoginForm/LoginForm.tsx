@@ -39,6 +39,8 @@ export const LoginForm = () => {
 
     const onClickLogin = useCallback(() => {
         dispatch(logIn({ username, password }))
+        dispatch(loginActions.setUsername(''))
+        dispatch(loginActions.setPassword(''))
     }, [dispatch, username, password])
 
     return (

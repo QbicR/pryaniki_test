@@ -5,14 +5,17 @@ import { userActions } from 'entities/User'
 import { TableData } from 'features/TableData'
 import { X_AUTH_TOKEN } from 'shared/const/localStorage'
 import { AuthWidget } from '../AuthWidget/AuthWidget'
+import { useNavigate } from 'react-router-dom'
+import { RoutePath } from 'shared/config/routeConfig/routeConfig'
 
 export const MainWidget = () => {
     const disptach = useDispatch()
     const isAuth = localStorage.getItem(X_AUTH_TOKEN)
+    const navigate = useNavigate()
 
     const logout = () => {
         disptach(userActions.logout())
-        window.location.reload()
+        navigate(RoutePath.main)
     }
 
     return (
