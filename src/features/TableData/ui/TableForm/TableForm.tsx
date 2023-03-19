@@ -36,12 +36,20 @@ const TableForm: React.FC<Props> = (props) => {
 
     const addCompanySigDate = (e: string) => {
         setComSigName(e)
-        setComSigDate(new Date(Date.now()).toISOString())
+        if (e) {
+            setComSigDate(new Date(Date.now()).toISOString())
+        } else {
+            setComSigDate('')
+        }
     }
 
     const addEmployeeSigDate = (e: string) => {
         setEmpSigName(e)
-        setEmpSigDate(new Date(Date.now()).toISOString())
+        if (e) {
+            setEmpSigDate(new Date(Date.now()).toISOString())
+        } else {
+            setEmpSigDate('')
+        }
     }
 
     return (
