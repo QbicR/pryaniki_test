@@ -7,7 +7,7 @@ import { IconButton } from '@mui/material'
 import { changeTableItem } from '../../model/slice/tableSlice'
 import { ResponseDataType } from '../../model/types/dataType'
 import { ModalUI } from 'shared/ui/Modal/ModalUI'
-import { TableFormAsync } from '../TableForm'
+import { TableForm } from '../TableForm/TableForm'
 
 interface Props {
     item: ResponseDataType
@@ -34,7 +34,7 @@ export const ChangeItemForm: React.FC<Props> = (props) => {
                 <ModeEditIcon sx={{ color: '#47A76A' }} />
             </IconButton>
             <ModalUI isOpen={isModalOpen} onClose={closeModal}>
-                <TableFormAsync changeItem={changeItem} item={item} />
+                <TableForm changeItem={changeItem} item={item} />
             </ModalUI>
         </div>
     )

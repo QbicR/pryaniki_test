@@ -11,7 +11,7 @@ interface Props {
 
 const inputStyle = { width: '100%', marginBottom: '20px' }
 
-const TableForm: React.FC<Props> = (props) => {
+export const TableForm: React.FC<Props> = (props) => {
     const { item, addItem, changeItem } = props
 
     const [docName, setDocName] = useState(item?.documentName || '')
@@ -122,5 +122,3 @@ const TableForm: React.FC<Props> = (props) => {
         </div>
     )
 }
-
-export default TableForm

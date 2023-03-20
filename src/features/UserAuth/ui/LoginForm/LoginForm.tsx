@@ -17,7 +17,7 @@ const boxStyle = {
 }
 const inputStyle = { width: '100%' }
 
-const LoginForm = () => {
+export const LoginForm = () => {
     const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
     const { username, password, isLoading, error } = useSelector(getLoginState)
 
@@ -81,5 +81,3 @@ const LoginForm = () => {
         </Box>
     )
 }
-
-export default LoginForm

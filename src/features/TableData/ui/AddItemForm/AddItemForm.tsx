@@ -6,7 +6,7 @@ import { Button } from '@mui/material'
 import { addTableItem } from '../../model/slice/tableSlice'
 import { ResponseDataType } from '../../model/types/dataType'
 import { ModalUI } from 'shared/ui/Modal/ModalUI'
-import { TableFormAsync } from '../TableForm'
+import { TableForm } from '../TableForm/TableForm'
 
 export const AddItemForm = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -32,7 +32,7 @@ export const AddItemForm = () => {
                 Добавить запись
             </Button>
             <ModalUI isOpen={isModalOpen} onClose={closeModal}>
-                <TableFormAsync addItem={addItem} />
+                <TableForm addItem={addItem} />
             </ModalUI>
         </div>
     )
