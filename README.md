@@ -1,4 +1,4 @@
-Стек: react, redux/toolkit, typescript, mui, jest
+Стек: react, redux/toolkit, typescript, mui, jest, FSD
 
 Реализовать небольшое SPA-приложение взаимодействующие с сервером.
 
