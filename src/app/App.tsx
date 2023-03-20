@@ -15,7 +15,7 @@ const App = () => {
         if (data) {
             navigate(RoutePath.main)
         }
-    }, [data])
+    }, [data, navigate])
 
     return (
         <div>
