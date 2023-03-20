@@ -1,4 +1,5 @@
 import { Container } from '@mui/material'
+
 import { MainWidget } from 'widgets/MainWidget'
 
 const containerStyle = {

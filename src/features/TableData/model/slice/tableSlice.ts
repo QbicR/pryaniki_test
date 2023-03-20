@@ -95,7 +95,15 @@ export const changeTableItem =
         try {
             const { data } = await tableService.changeTableItem(id, item)
 
-            dispatch(tableActions.updateItem(data))
+            if (data) {
+                dispatch(tableActions.updateItem(data))
+            } else {
+                dispatch(
+                    tableActions.setError(
+                        'Поля со звездочкой обязательны для заполнения и не могут быть пустыми!',
+                    ),
+                )
+            }
         } catch (error) {
             dispatch(tableActions.setError('Ошибка запроса. Повторите позже.'))
         }
@@ -112,7 +120,15 @@ export const addTableItem =
         try {
             const { data } = await tableService.addTableItem(item)
 
-            dispatch(tableActions.addItem(data))
+            if (data) {
+                dispatch(tableActions.addItem(data))
+            } else {
+                dispatch(
+                    tableActions.setError(
+                        'Поля со звездочкой обязательны для заполнения и не могут быть пустыми!',
+                    ),
+                )
+            }
         } catch (error) {
             dispatch(tableActions.setError('Ошибка запроса. Повторите позже.'))
         }

@@ -17,7 +17,7 @@ const boxStyle = {
 }
 const inputStyle = { width: '100%' }
 
-export const LoginForm = () => {
+const LoginForm = () => {
     const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
     const { username, password, isLoading, error } = useSelector(getLoginState)
 
@@ -42,6 +42,7 @@ export const LoginForm = () => {
         dispatch(loginActions.setUsername(''))
         dispatch(loginActions.setPassword(''))
         dispatch(loginActions.setError(''))
+        dispatch(loginActions.setLoading(false))
     }, [dispatch, username, password])
 
     return (
@@ -69,14 +70,16 @@ export const LoginForm = () => {
                 variant="filled"
             />
             <Button
-                disabled={isLoading || !password || !username || Number(username) < 1}
+                disabled={isLoading || !password || !username || Number(username) < 0}
                 onClick={onClickLogin}
                 size="large"
                 variant="contained"
                 color="primary"
             >
-                Войти
+                {!isLoading ? 'Войти' : 'Вход...'}
             </Button>
         </Box>
     )
 }
+
+export default LoginForm

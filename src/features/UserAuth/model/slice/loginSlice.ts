@@ -22,6 +22,9 @@ export const loginSlice = createSlice({
         setPassword: (state, action: PayloadAction<string>) => {
             state.password = action.payload
         },
+        setLoading: (state, action: PayloadAction<boolean>) => {
+            state.isLoading = action.payload
+        },
         setError: (state, action: PayloadAction<string>) => {
             state.error = action.payload
         },
@@ -34,14 +37,19 @@ export const { reducer: loginReducer } = loginSlice
 export const logIn =
     (authData: Record<string, string>) =>
     async (
-        dispatch: (arg0: { payload: string; type: 'user/setAuthData' | 'login/setError' }) => void,
+        dispatch: (arg0: {
+            payload: any
+            type: 'user/setAuthData' | 'login/setLoading' | 'login/setError'
+        }) => void,
     ) => {
+        dispatch(loginActions.setLoading(true))
         try {
             const response = await authService.login(authData)
 
             if (response.error_message === 'OK') {
                 localStorage.setItem(X_AUTH_TOKEN, response.data.token)
                 dispatch(userActions.setAuthData(response.data.token))
+                dispatch(loginActions.setLoading(false))
             } else {
                 dispatch(loginActions.setError('Неверный пароль'))
             }

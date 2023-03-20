@@ -1,11 +1,11 @@
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { Button } from '@mui/material'
 
+import { AuthWidget } from '../AuthWidget/AuthWidget'
 import { userActions } from 'entities/User'
 import { TableData } from 'features/TableData'
 import { X_AUTH_TOKEN } from 'shared/const/localStorage'
-import { AuthWidget } from '../AuthWidget/AuthWidget'
-import { useNavigate } from 'react-router-dom'
 import { RoutePath } from 'shared/config/routeConfig/routeConfig'
 
 export const MainWidget = () => {

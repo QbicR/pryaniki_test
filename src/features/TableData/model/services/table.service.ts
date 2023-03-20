@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 import { ResponseChangeType, ResponseDataType, ResponseType } from '../types/dataType'
 import { HOST } from 'shared/const/hostAPI'
 import { X_AUTH_TOKEN } from 'shared/const/localStorage'
@@ -7,12 +5,16 @@ import { X_AUTH_TOKEN } from 'shared/const/localStorage'
 export const tableService = {
     getTableData: async () => {
         try {
-            const { data } = await axios.get<ResponseType>(
+            const data: ResponseType = await fetch(
                 HOST + '/ru/data/v3/testmethods/docs/userdocs/get',
                 {
-                    headers: { 'x-auth': localStorage.getItem(X_AUTH_TOKEN) },
+                    method: 'GET',
+                    headers: {
+                        'x-auth': localStorage.getItem(X_AUTH_TOKEN),
+                        'Content-Type': 'application/json;charset=utf-8',
+                    },
                 },
-            )
+            ).then((res) => res.json())
 
             return data
         } catch (error) {
@@ -21,12 +23,16 @@ export const tableService = {
     },
     deleteTableItem: async (id: string) => {
         try {
-            const { data } = await axios.get<ResponseType>(
+            const data: ResponseType = await await fetch(
                 HOST + `/ru/data/v3/testmethods/docs/userdocs/delete/${id}`,
                 {
-                    headers: { 'x-auth': localStorage.getItem(X_AUTH_TOKEN) },
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json;charset=utf-8',
+                        'x-auth': localStorage.getItem(X_AUTH_TOKEN),
+                    },
                 },
-            )
+            ).then((res) => res.json())
 
             return data
         } catch (error) {
@@ -35,13 +41,17 @@ export const tableService = {
     },
     changeTableItem: async (id: string, item: ResponseDataType) => {
         try {
-            const { data } = await axios.post<ResponseChangeType>(
+            const data: ResponseChangeType = await fetch(
                 HOST + `/ru/data/v3/testmethods/docs/userdocs/set/${id}`,
-                item,
                 {
-                    headers: { 'x-auth': localStorage.getItem(X_AUTH_TOKEN) },
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json;charset=utf-8',
+                        'x-auth': localStorage.getItem(X_AUTH_TOKEN),
+                    },
+                    body: JSON.stringify(item),
                 },
-            )
+            ).then((res) => res.json())
 
             return data
         } catch (error) {
@@ -50,13 +60,17 @@ export const tableService = {
     },
     addTableItem: async (item: ResponseDataType) => {
         try {
-            const { data } = await axios.post<ResponseChangeType>(
+            const data: ResponseChangeType = await fetch(
                 HOST + `/ru/data/v3/testmethods/docs/userdocs/create`,
-                item,
                 {
-                    headers: { 'x-auth': localStorage.getItem(X_AUTH_TOKEN) },
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json;charset=utf-8',
+                        'x-auth': localStorage.getItem(X_AUTH_TOKEN),
+                    },
+                    body: JSON.stringify(item),
                 },
-            )
+            ).then((res) => res.json())
 
             return data
         } catch (error) {

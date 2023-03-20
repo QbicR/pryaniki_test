@@ -1,6 +1,6 @@
 import { Button, Card, Typography } from '@mui/material'
-
 import { useNavigate } from 'react-router-dom'
+
 import { RoutePath } from 'shared/config/routeConfig/routeConfig'
 
 const cardStyle = {

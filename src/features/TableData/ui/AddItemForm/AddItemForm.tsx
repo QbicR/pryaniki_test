@@ -4,9 +4,9 @@ import { ThunkDispatch } from '@reduxjs/toolkit'
 import { Button } from '@mui/material'
 
 import { addTableItem } from '../../model/slice/tableSlice'
-import { TableForm } from '../TableForm/TableForm'
 import { ResponseDataType } from '../../model/types/dataType'
 import { ModalUI } from 'shared/ui/Modal/ModalUI'
+import { TableFormAsync } from '../TableForm'
 
 export const AddItemForm = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -32,7 +32,7 @@ export const AddItemForm = () => {
                 Добавить запись
             </Button>
             <ModalUI isOpen={isModalOpen} onClose={closeModal}>
-                <TableForm addItem={addItem} />
+                <TableFormAsync addItem={addItem} />
             </ModalUI>
         </div>
     )
