@@ -4,8 +4,8 @@ import { ThunkDispatch } from '@reduxjs/toolkit'
 
 import { addTableItem } from '../../model/slice/tableSlice'
 import { ResponseDataType } from '../../model/types/dataType'
-import { ModalUI } from 'shared/ui/Modal/ModalUI'
 import { TableForm } from '../TableForm/TableForm'
+import { ModalUI } from 'shared/ui/Modal/ModalUI'
 import { ButtonUI } from 'shared/ui/Button/ButtonUI'
 
 export const AddItemForm = memo(() => {

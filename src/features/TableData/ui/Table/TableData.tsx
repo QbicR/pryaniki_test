@@ -17,8 +17,8 @@ import { getDataState } from '../../model/selectors/getDataState'
 import { getTableData } from '../../model/slice/tableSlice'
 import { AddItemForm } from '../AddItemForm/AddItemForm'
 import { ChangeItemForm } from '../ChangeItemForm/ChangeItemForm'
-import { columns } from 'shared/const/tableColumns'
 import { DeleteItem } from '../DeleteItem/DeleteItem'
+import { columns } from 'shared/const/tableColumns'
 
 const tableContainerStyle = { height: 600, marginTop: '50px' }
 const tableStyle = { position: 'relative' }

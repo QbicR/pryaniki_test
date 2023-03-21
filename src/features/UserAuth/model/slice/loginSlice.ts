@@ -35,16 +35,16 @@ export const { actions: loginActions } = loginSlice
 export const { reducer: loginReducer } = loginSlice
 
 export const logIn =
-    (authData: Record<string, string>) =>
+    (username: string, password: string) =>
     async (
         dispatch: (arg0: {
             payload: any
-            type: 'user/setAuthData' | 'login/setLoading' | 'login/setError'
+            type: 'login/setLoading' | 'user/setAuthData' | 'login/setError'
         }) => void,
     ) => {
         dispatch(loginActions.setLoading(true))
         try {
-            const response = await authService.login(authData)
+            const response = await authService.login(username, password)
 
             if (response.error_message === 'OK') {
                 localStorage.setItem(X_AUTH_TOKEN, response.data.token)

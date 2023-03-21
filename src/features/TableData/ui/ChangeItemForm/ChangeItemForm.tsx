@@ -6,8 +6,8 @@ import { IconButton } from '@mui/material'
 
 import { changeTableItem } from '../../model/slice/tableSlice'
 import { ResponseDataType } from '../../model/types/dataType'
-import { ModalUI } from 'shared/ui/Modal/ModalUI'
 import { TableForm } from '../TableForm/TableForm'
+import { ModalUI } from 'shared/ui/Modal/ModalUI'
 
 interface Props {
     item: ResponseDataType

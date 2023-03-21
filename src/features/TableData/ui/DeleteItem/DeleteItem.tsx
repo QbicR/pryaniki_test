@@ -1,9 +1,9 @@
 import React, { memo, useCallback } from 'react'
 import { ThunkDispatch } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
-
 import { IconButton } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
+
 import { deleteTableItem } from '../../model/slice/tableSlice'
 
 interface Props {
