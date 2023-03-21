@@ -1,12 +1,12 @@
 import { memo, useCallback, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { ThunkDispatch } from '@reduxjs/toolkit'
-import { Button } from '@mui/material'
 
 import { addTableItem } from '../../model/slice/tableSlice'
 import { ResponseDataType } from '../../model/types/dataType'
 import { ModalUI } from 'shared/ui/Modal/ModalUI'
 import { TableForm } from '../TableForm/TableForm'
+import { ButtonUI } from 'shared/ui/Button/ButtonUI'
 
 export const AddItemForm = memo(() => {
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -26,14 +26,13 @@ export const AddItemForm = memo(() => {
 
     return (
         <div>
-            <Button
-                size="large"
-                variant="contained"
-                color="info"
+            <ButtonUI
+                size={'large'}
+                variant={'contained'}
+                color={'info'}
                 onClick={() => setIsModalOpen(true)}
-            >
-                Добавить запись
-            </Button>
+                content={'Добавить запись'}
+            />
             <ModalUI isOpen={isModalOpen} onClose={closeModal}>
                 <TableForm addItem={addItem} />
             </ModalUI>

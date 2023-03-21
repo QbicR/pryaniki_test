@@ -9,17 +9,16 @@ import {
     TableHead,
     TablePagination,
     TableRow,
-    IconButton,
     CircularProgress,
     Box,
 } from '@mui/material'
-import DeleteIcon from '@mui/icons-material/Delete'
 
 import { getDataState } from '../../model/selectors/getDataState'
-import { deleteTableItem, getTableData } from '../../model/slice/tableSlice'
+import { getTableData } from '../../model/slice/tableSlice'
 import { AddItemForm } from '../AddItemForm/AddItemForm'
 import { ChangeItemForm } from '../ChangeItemForm/ChangeItemForm'
 import { columns } from 'shared/const/tableColumns'
+import { DeleteItem } from '../DeleteItem/DeleteItem'
 
 const tableContainerStyle = { height: 600, marginTop: '50px' }
 const tableStyle = { position: 'relative' }
@@ -49,13 +48,6 @@ export const TableData = () => {
         setRowsPerPage(Number(event.target.value))
         setPage(0)
     }, [])
-
-    const deleteItem = useCallback(
-        (id: string) => {
-            dispatch(deleteTableItem(id))
-        },
-        [dispatch],
-    )
 
     useEffect(() => {
         dispatch(getTableData())
@@ -101,16 +93,7 @@ export const TableData = () => {
                                                                 <ChangeItemForm item={item} />
                                                             )}
                                                             {column.id === 'deleteData' && (
-                                                                <IconButton
-                                                                    onClick={() =>
-                                                                        deleteItem(item.id)
-                                                                    }
-                                                                    aria-label="delete"
-                                                                >
-                                                                    <DeleteIcon
-                                                                        sx={{ color: '#E34234' }}
-                                                                    />
-                                                                </IconButton>
+                                                                <DeleteItem id={item.id} />
                                                             )}
                                                         </>
                                                     )}

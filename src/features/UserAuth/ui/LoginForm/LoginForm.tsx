@@ -73,15 +73,6 @@ export const LoginForm = () => {
                 onClick={onClickLogin}
                 content={!isLoading ? 'Войти' : 'Вход...'}
             />
-            {/* <Button
-                disabled={isLoading || !password || !username || Number(username) < 0}
-                onClick={onClickLogin}
-                size="large"
-                variant="contained"
-                color="primary"
-            >
-                {!isLoading ? 'Войти' : 'Вход...'}
-            </Button> */}
         </Box>
     )
 }

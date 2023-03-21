@@ -1,8 +1,8 @@
 import { Card, Container, Typography } from '@mui/material'
-import Button from '@mui/material/Button'
 import { useNavigate } from 'react-router-dom'
 
 import { RoutePath } from 'shared/config/routeConfig/routeConfig'
+import { ButtonUI } from 'shared/ui/Button/ButtonUI'
 
 const containerStyle = {
     display: 'flex',
@@ -36,9 +36,13 @@ const NotFoundPage = () => {
                 <Typography sx={{ fontSize: 18 }} color="text.secondary" gutterBottom>
                     Попробуйте проверить ссылку или вернитесь на главную страницу
                 </Typography>
-                <Button onClick={() => navigate(RoutePath.main)} variant="text" size="medium">
-                    На главную
-                </Button>
+                <ButtonUI
+                    variant={'text'}
+                    size={'medium'}
+                    onClick={() => navigate(RoutePath.main)}
+                    color={'info'}
+                    content={'На главную'}
+                />
             </Card>
         </Container>
     )
