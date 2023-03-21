@@ -55,7 +55,7 @@ export const LoginForm = () => {
                 value={username}
                 onChange={onChangeUsername}
                 variant={'filled'}
-                label={Number(username) < 0 ? 'Номер не может быть меньше 1' : 'Введите номер'}
+                label={Number(username) < 0 ? 'Номер не может быть меньше 0' : 'Введите номер'}
                 error={Number(username) < 0 ? true : false}
             />
             <Input
