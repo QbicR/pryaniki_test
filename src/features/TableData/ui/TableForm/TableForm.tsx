@@ -1,15 +1,14 @@
 import React, { memo, useCallback, useState } from 'react'
-import { Button, TextField } from '@mui/material'
 
 import { ResponseDataType } from '../../model/types/dataType'
+import { Input } from 'shared/ui/Input/Input'
+import { ButtonUI } from 'shared/ui/Button/ButtonUI'
 
 interface Props {
     addItem?: (doc: ResponseDataType) => void
     changeItem?: (id: string, doc: ResponseDataType) => void
     item?: ResponseDataType
 }
-
-const inputStyle = { width: '100%', marginBottom: '20px' }
 
 export const TableForm: React.FC<Props> = memo((props) => {
     const { item, addItem, changeItem } = props
@@ -54,71 +53,52 @@ export const TableForm: React.FC<Props> = memo((props) => {
 
     return (
         <div>
-            <TextField
-                required
-                sx={inputStyle}
+            <Input
                 value={docName}
-                onChange={(e) => setDocName(e.target.value)}
-                type="text"
-                variant="standard"
-                id="filled-size-small"
-                label="Название документа"
+                variant={'standard'}
+                onChange={setDocName}
+                label={'Название документа'}
+                required={true}
             />
-            <TextField
-                required
-                sx={inputStyle}
+            <Input
                 value={docStatus}
-                onChange={(e) => setDocStatsu(e.target.value)}
-                type="text"
-                variant="standard"
-                id="filled-size-small"
-                label="Статус документа"
+                variant={'standard'}
+                onChange={setDocStatsu}
+                label={'Статус документа'}
+                required={true}
             />
-            <TextField
-                sx={inputStyle}
+            <Input
                 value={docType}
-                onChange={(e) => setDocType(e.target.value)}
-                type="text"
-                variant="standard"
-                id="filled-size-small"
-                label="Тип документа"
+                variant={'standard'}
+                onChange={setDocType}
+                label={'Тип документа'}
             />
-            <TextField
-                sx={inputStyle}
+            <Input
                 value={empNumber}
-                onChange={(e) => setEmpNumber(e.target.value)}
-                type="text"
-                variant="standard"
-                id="filled-size-small"
-                label="Номер сотрудника"
+                variant={'standard'}
+                onChange={setEmpNumber}
+                label={'Номер сотрудника'}
             />
-            <TextField
-                sx={inputStyle}
+            <Input
                 value={comSigName}
-                onChange={(e) => addCompanySigDate(e.target.value)}
-                type="text"
-                variant="standard"
-                id="filled-size-small"
-                label="Подпись компании"
+                variant={'standard'}
+                onChange={addCompanySigDate}
+                label={'Подпись компании'}
             />
-            <TextField
-                sx={inputStyle}
+            <Input
                 value={empSigName}
-                onChange={(e) => addEmployeeSigDate(e.target.value)}
-                type="text"
-                variant="standard"
-                id="filled-size-small"
-                label="Подпись сотрудника"
+                variant={'standard'}
+                onChange={addEmployeeSigDate}
+                label={'Подпись сотрудника'}
             />
-            <Button
+            <ButtonUI
                 disabled={!docName || !docStatus}
                 onClick={addItem ? () => addItem(newItem) : () => changeItem(item.id, newItem)}
-                size="large"
+                size={'large'}
                 variant={addItem ? 'contained' : 'outlined'}
-                color="primary"
-            >
-                {addItem ? 'Добавить' : 'Изменить'}
-            </Button>
+                color={'primary'}
+                content={addItem ? 'Добавить' : 'Изменить'}
+            />
         </div>
     )
 })

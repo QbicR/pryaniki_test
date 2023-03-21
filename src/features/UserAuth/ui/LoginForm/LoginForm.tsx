@@ -1,10 +1,12 @@
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux/es/exports'
 import { ThunkDispatch } from '@reduxjs/toolkit'
-import { Box, Button, TextField, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 
 import { logIn, loginActions } from '../../model/slice/loginSlice'
 import { getLoginState } from '../../model/selectors/getLoginState'
+import { Input } from 'shared/ui/Input/Input'
+import { ButtonUI } from 'shared/ui/Button/ButtonUI'
 
 const boxStyle = {
     width: '100%',
@@ -15,7 +17,6 @@ const boxStyle = {
     justifyContent: 'center',
     gap: '30px',
 }
-const inputStyle = { width: '100%' }
 
 export const LoginForm = () => {
     const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
@@ -50,26 +51,29 @@ export const LoginForm = () => {
             <Typography sx={{ fontSize: 28 }} color="text.secondary" gutterBottom>
                 Вход
             </Typography>
-            <TextField
-                sx={inputStyle}
-                onChange={(e) => onChangeUsername(e.target.value)}
+            <Input
                 value={username}
+                onChange={onChangeUsername}
+                variant={'filled'}
                 label={Number(username) < 0 ? 'Номер не может быть меньше 1' : 'Введите номер'}
                 error={Number(username) < 0 ? true : false}
-                type="number"
-                id="filled-size-small"
-                variant="filled"
             />
-            <TextField
-                sx={inputStyle}
-                onChange={(e) => onChangePassword(e.target.value)}
+            <Input
                 value={password}
+                onChange={onChangePassword}
+                variant={'filled'}
                 label={error ? error : "Введите 'password'"}
                 error={error ? true : false}
-                id="filled-error-helper-text"
-                variant="filled"
             />
-            <Button
+            <ButtonUI
+                disabled={isLoading || !password || !username || Number(username) < 0}
+                variant={'contained'}
+                size={'large'}
+                color={'primary'}
+                onClick={onClickLogin}
+                content={!isLoading ? 'Войти' : 'Вход...'}
+            />
+            {/* <Button
                 disabled={isLoading || !password || !username || Number(username) < 0}
                 onClick={onClickLogin}
                 size="large"
@@ -77,7 +81,7 @@ export const LoginForm = () => {
                 color="primary"
             >
                 {!isLoading ? 'Войти' : 'Вход...'}
-            </Button>
+            </Button> */}
         </Box>
     )
 }
