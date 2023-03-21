@@ -12,10 +12,13 @@ export const AddItemForm = memo(() => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const dispath = useDispatch<ThunkDispatch<any, any, any>>()
 
-    const addItem = useCallback((newItem: ResponseDataType) => {
-        dispath(addTableItem(newItem))
-        setIsModalOpen(false)
-    }, [])
+    const addItem = useCallback(
+        (newItem: ResponseDataType) => {
+            dispath(addTableItem(newItem))
+            setIsModalOpen(false)
+        },
+        [dispath],
+    )
 
     const closeModal = useCallback(() => {
         setIsModalOpen(false)

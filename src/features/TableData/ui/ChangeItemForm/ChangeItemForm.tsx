@@ -19,10 +19,13 @@ export const ChangeItemForm: React.FC<Props> = memo((props) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const dispath = useDispatch<ThunkDispatch<any, any, any>>()
 
-    const changeItem = useCallback((id: string, newItem: ResponseDataType) => {
-        dispath(changeTableItem(id, newItem))
-        setIsModalOpen(false)
-    }, [])
+    const changeItem = useCallback(
+        (id: string, newItem: ResponseDataType) => {
+            dispath(changeTableItem(id, newItem))
+            setIsModalOpen(false)
+        },
+        [dispath],
+    )
 
     const closeModal = useCallback(() => {
         setIsModalOpen(false)

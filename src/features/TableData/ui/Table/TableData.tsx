@@ -50,9 +50,12 @@ export const TableData = () => {
         setPage(0)
     }, [])
 
-    const deleteItem = useCallback((id: string) => {
-        dispatch(deleteTableItem(id))
-    }, [])
+    const deleteItem = useCallback(
+        (id: string) => {
+            dispatch(deleteTableItem(id))
+        },
+        [dispatch],
+    )
 
     useEffect(() => {
         dispatch(getTableData())
