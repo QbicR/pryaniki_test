@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import { Button, TextField } from '@mui/material'
 
 import { ResponseDataType } from '../../model/types/dataType'
@@ -34,23 +34,23 @@ export const TableForm: React.FC<Props> = memo((props) => {
         employeeSigDate: empSigDate,
     }
 
-    const addCompanySigDate = (e: string) => {
+    const addCompanySigDate = useCallback((e: string) => {
         setComSigName(e)
         if (e) {
             setComSigDate(new Date(Date.now()).toISOString())
         } else {
             setComSigDate('')
         }
-    }
+    }, [])
 
-    const addEmployeeSigDate = (e: string) => {
+    const addEmployeeSigDate = useCallback((e: string) => {
         setEmpSigName(e)
         if (e) {
             setEmpSigDate(new Date(Date.now()).toISOString())
         } else {
             setEmpSigDate('')
         }
-    }
+    }, [])
 
     return (
         <div>

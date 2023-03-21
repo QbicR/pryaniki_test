@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { ThunkDispatch } from '@reduxjs/toolkit'
 import ModeEditIcon from '@mui/icons-material/ModeEdit'
@@ -19,14 +19,14 @@ export const ChangeItemForm: React.FC<Props> = memo((props) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const dispath = useDispatch<ThunkDispatch<any, any, any>>()
 
-    const changeItem = (id: string, newItem: ResponseDataType) => {
+    const changeItem = useCallback((id: string, newItem: ResponseDataType) => {
         dispath(changeTableItem(id, newItem))
         setIsModalOpen(false)
-    }
+    }, [])
 
-    const closeModal = () => {
+    const closeModal = useCallback(() => {
         setIsModalOpen(false)
-    }
+    }, [])
 
     return (
         <div>

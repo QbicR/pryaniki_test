@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ThunkDispatch } from '@reduxjs/toolkit'
 import {
@@ -41,18 +41,18 @@ export const TableData = () => {
     const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
     const { data, isLoading, error } = useSelector(getDataState)
 
-    const handleChangePage = (event: unknown, newPage: number) => {
+    const handleChangePage = useCallback((event: unknown, newPage: number) => {
         setPage(newPage)
-    }
+    }, [])
 
-    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeRowsPerPage = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
         setRowsPerPage(Number(event.target.value))
         setPage(0)
-    }
+    }, [])
 
-    const deleteItem = (id: string) => {
+    const deleteItem = useCallback((id: string) => {
         dispatch(deleteTableItem(id))
-    }
+    }, [])
 
     useEffect(() => {
         dispatch(getTableData())

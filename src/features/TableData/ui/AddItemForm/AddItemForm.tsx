@@ -1,4 +1,4 @@
-import { memo, useState } from 'react'
+import { memo, useCallback, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { ThunkDispatch } from '@reduxjs/toolkit'
 import { Button } from '@mui/material'
@@ -12,14 +12,14 @@ export const AddItemForm = memo(() => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const dispath = useDispatch<ThunkDispatch<any, any, any>>()
 
-    const addItem = (newItem: ResponseDataType) => {
+    const addItem = useCallback((newItem: ResponseDataType) => {
         dispath(addTableItem(newItem))
         setIsModalOpen(false)
-    }
+    }, [])
 
-    const closeModal = () => {
+    const closeModal = useCallback(() => {
         setIsModalOpen(false)
-    }
+    }, [])
 
     return (
         <div>
