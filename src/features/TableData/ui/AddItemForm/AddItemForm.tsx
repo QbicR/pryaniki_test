@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { memo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { ThunkDispatch } from '@reduxjs/toolkit'
 import { Button } from '@mui/material'
@@ -8,7 +8,7 @@ import { ResponseDataType } from '../../model/types/dataType'
 import { ModalUI } from 'shared/ui/Modal/ModalUI'
 import { TableForm } from '../TableForm/TableForm'
 
-export const AddItemForm = () => {
+export const AddItemForm = memo(() => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const dispath = useDispatch<ThunkDispatch<any, any, any>>()
 
@@ -36,4 +36,4 @@ export const AddItemForm = () => {
             </ModalUI>
         </div>
     )
-}
+})

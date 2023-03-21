@@ -1,12 +1,23 @@
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { Button } from '@mui/material'
+import { Button, Card, Typography } from '@mui/material'
 
-import { AuthWidget } from '../AuthWidget/AuthWidget'
 import { userActions } from 'entities/User'
 import { TableData } from 'features/TableData'
 import { X_AUTH_TOKEN } from 'shared/const/localStorage'
 import { RoutePath } from 'shared/config/routeConfig/routeConfig'
+
+const cardStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '50px',
+    textAlign: 'center',
+    width: 500,
+    height: 300,
+    p: 4,
+}
 
 export const MainWidget = () => {
     const disptach = useDispatch()
@@ -34,7 +45,19 @@ export const MainWidget = () => {
                     <TableData />
                 </>
             ) : (
-                <AuthWidget />
+                <Card sx={cardStyle}>
+                    <Typography sx={{ fontSize: 32 }} color="text.secondary" gutterBottom>
+                        Авторизуйтесь, чтобы воспользоваться таблицей
+                    </Typography>
+                    <Button
+                        size="large"
+                        variant="contained"
+                        color="info"
+                        onClick={() => navigate(RoutePath.auth)}
+                    >
+                        Войти
+                    </Button>
+                </Card>
             )}
         </div>
     )

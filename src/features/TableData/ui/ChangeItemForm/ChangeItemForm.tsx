@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { ThunkDispatch } from '@reduxjs/toolkit'
 import ModeEditIcon from '@mui/icons-material/ModeEdit'
@@ -13,7 +13,7 @@ interface Props {
     item: ResponseDataType
 }
 
-export const ChangeItemForm: React.FC<Props> = (props) => {
+export const ChangeItemForm: React.FC<Props> = memo((props) => {
     const { item } = props
 
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -38,4 +38,4 @@ export const ChangeItemForm: React.FC<Props> = (props) => {
             </ModalUI>
         </div>
     )
-}
+})

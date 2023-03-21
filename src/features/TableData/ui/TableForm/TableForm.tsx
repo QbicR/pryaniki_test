@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import { Button, TextField } from '@mui/material'
 
 import { ResponseDataType } from '../../model/types/dataType'
@@ -11,7 +11,7 @@ interface Props {
 
 const inputStyle = { width: '100%', marginBottom: '20px' }
 
-export const TableForm: React.FC<Props> = (props) => {
+export const TableForm: React.FC<Props> = memo((props) => {
     const { item, addItem, changeItem } = props
 
     const [docName, setDocName] = useState(item?.documentName || '')
@@ -121,4 +121,4 @@ export const TableForm: React.FC<Props> = (props) => {
             </Button>
         </div>
     )
-}
+})
